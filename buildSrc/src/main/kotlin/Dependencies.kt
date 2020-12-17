@@ -39,7 +39,7 @@ object Dependencies {
 
     internal const val SQUARE_OK_HTTP = "com.squareup.okhttp3:okhttp:${Versions.Square.OK_HTTP}"
     internal const val SQUARE_OK_HTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.Square.OK_HTTP}"
-    internal const val SQUARE_OK_CONVERTER_GSON = "com.squareup.retrofit2:${Versions.Square.RETROFIT_CONVERTER_GSON}"
+    internal const val SQUARE_OK_CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:${Versions.Square.RETROFIT_CONVERTER_GSON}"
     internal const val SQUARE_RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.Square.RETROFIT}"
 
     const val DETEKT = Versions.Detekt.DETEKT

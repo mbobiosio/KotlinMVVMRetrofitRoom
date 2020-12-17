@@ -23,11 +23,11 @@ android {
 
     buildTypes {
         getByName(Versions.Android.BuildTypes.DEBUG) {
-            buildConfigField("String", "BASE_URL", "\"https://api.covid19tracking.narrativa.com/api/\"")
+            buildConfigField("String", "BASE_URL", "\"https://restcountries.eu/rest/v2/\"")
         }
         getByName(Versions.Android.BuildTypes.RELEASE) {
             isMinifyEnabled = false
-            buildConfigField("String", "BASE_URL", "\"https://api.covid19tracking.narrativa.com/api/\"")
+            buildConfigField("String", "BASE_URL", "\"https://restcountries.eu/rest/v2/\"")
             proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
@@ -74,9 +74,6 @@ dependencies {
     google()
     firebase()
     square()
-    coroutines()
-    koin()
-    arrow()
     others()
     test()
 }
