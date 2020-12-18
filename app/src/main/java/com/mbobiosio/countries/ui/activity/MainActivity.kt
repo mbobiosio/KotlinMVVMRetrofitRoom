@@ -1,16 +1,19 @@
 package com.mbobiosio.countries.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.mbobiosio.countries.R
+import com.mbobiosio.countries.model.Country
 import com.mbobiosio.countries.ui.adapter.CountriesAdapter
 import com.mbobiosio.countries.viewmodel.CountryViewModel
 import com.mbobiosio.lifecycleconnectivity.LifecycleService
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), (Country) -> Unit {
 
     private lateinit var countryViewModel: CountryViewModel
     private lateinit var countriesAdapter: CountriesAdapter
@@ -20,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         countryViewModel = ViewModelProvider(this).get(CountryViewModel::class.java)
-        countriesAdapter = CountriesAdapter()
+        countriesAdapter = CountriesAdapter(this)
         countries.adapter = countriesAdapter
 
         val connectionLiveData = LifecycleService(this)
@@ -60,6 +63,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun isLoading(view: Int) {
         loadingIcon.visibility = view
+    }
+
+    override fun invoke(country: Country) {
+        val intent = Intent(this, CountryDetailActivity::class.java)
+        intent.putExtra("details", country)
+        startActivity(intent)
     }
 
 }

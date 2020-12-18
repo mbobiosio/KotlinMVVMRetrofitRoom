@@ -66,9 +66,11 @@ object Dependencies {
     //Loading Indicator
     internal const val LOADING_LIBRARY = "com.wang.avi:library:${Versions.Others.LOADING_INDICATOR}"
 
+    //Glide
+    internal const val GLIDE = "com.github.bumptech.glide:glide:${Versions.Glide.GLIDE}"
+    internal const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:${Versions.Glide.GLIDE}"
+    internal const val GLIDE_SVG = "com.github.qoqa:glide-svg:${Versions.Glide.GLIDE_SVG}"
 }
-
-
 
 fun DependencyHandler.gradle() {
     classpath(Dependencies.GRADLE_ANDROID_TOOLS)
@@ -123,6 +125,12 @@ fun DependencyHandler.test() {
 
     testImplementation(Dependencies.ANDROID_CORE_TESTING)
     testImplementation(Dependencies.ANDROID_TEST_TRUTH)
+}
+
+fun DependencyHandler.glide() {
+    implementation(Dependencies.GLIDE)
+    implementation(Dependencies.GLIDE_SVG)
+    kapt(Dependencies.GLIDE_COMPILER)
 }
 
 fun DependencyHandler.detektFormatting() {

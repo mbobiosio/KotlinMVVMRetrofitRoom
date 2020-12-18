@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mbobiosio.countries.R
 import com.mbobiosio.countries.model.Country
+import com.mbobiosio.countries.util.GlideApp
 import kotlinx.android.synthetic.main.item_country.view.*
-import timber.log.Timber
 
-class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountriesVH>() {
+class CountriesAdapter(
+    var listener: (Country) -> Unit
+) : RecyclerView.Adapter<CountriesAdapter.CountriesVH>() {
 
     private var dataList: List<Country> = ArrayList()
 
@@ -30,16 +32,17 @@ class CountriesAdapter : RecyclerView.Adapter<CountriesAdapter.CountriesVH>() {
         notifyDataSetChanged()
     }
 
-    class CountriesVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CountriesVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(item: Country) = with(itemView) {
 
             countryName.text = item.name
             capital.text = item.capital
             currency.text = item.currencies[0].code
+            GlideApp.with(itemView.context).load(item.flag).into(flag)
 
             setOnClickListener {
-                Timber.d("${item.name}")
+                listener.invoke(item)
             }
         }
     }

@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import androidx.annotation.RequiresApi
+import timber.log.Timber
 
 object NetworkUtil {
 
@@ -15,15 +16,15 @@ object NetworkUtil {
         if (capabilities != null) {
             when {
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
-                    //Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    Timber.i("NetworkCapabilities.TRANSPORT_CELLULAR")
                     return true
                 }
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
-                    //Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    Timber.i("NetworkCapabilities.TRANSPORT_WIFI")
                     return true
                 }
                 capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> {
-                    //Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    Timber.i("NetworkCapabilities.TRANSPORT_ETHERNET")
                     return true
                 }
             }

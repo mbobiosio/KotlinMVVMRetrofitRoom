@@ -72,6 +72,11 @@ object Versions {
         const val RX_JAVA = "2.1.1"
     }
 
+    object Glide {
+        const val GLIDE = "4.10.0"
+        const val GLIDE_SVG = "2.0.4"
+    }
+
     object Coroutines {
         const val CORE = "1.4.2"
         const val ANDROID = "1.4.2"

@@ -1,11 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    val kotlin_version by extra("1.4.21")
     repositories {
         google()
         jcenter()
         uri("https://plugins.gradle.org/m2/")
     }
     dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         gradle()
     }
 }
