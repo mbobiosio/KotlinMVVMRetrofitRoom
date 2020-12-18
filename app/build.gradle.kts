@@ -2,8 +2,10 @@ plugins {
     id ("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("kotlin-android-extensions")
     id("name.remal.check-dependency-updates")
 }
+
 
 android {
     compileSdkVersion(Versions.Android.COMPILE_SDK)
@@ -74,6 +76,7 @@ dependencies {
     google()
     firebase()
     square()
+    rxjava()
     others()
     test()
 }

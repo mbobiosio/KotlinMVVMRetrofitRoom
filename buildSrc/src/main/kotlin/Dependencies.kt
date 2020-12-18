@@ -34,19 +34,31 @@ object Dependencies {
 
     internal const val ANDROID_TEST_TRUTH = "com.google.truth:truth:${Versions.Google.Test.TRUTH}"
 
+    //Firebase
     internal const val FIREBASE_ANALYTICS = "com.google.firebase:firebase-analytics-ktx:${Versions.Google.Firebase.ANALYTICS}"
     internal const val FIREBASE_CRASHLYTICS = "com.google.firebase:firebase-crashlytics:${Versions.Google.Firebase.CRASHLYTICS}"
 
+    //SQUARE
     internal const val SQUARE_OK_HTTP = "com.squareup.okhttp3:okhttp:${Versions.Square.OK_HTTP}"
     internal const val SQUARE_OK_HTTP_LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:${Versions.Square.OK_HTTP}"
     internal const val SQUARE_OK_CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:${Versions.Square.RETROFIT_CONVERTER_GSON}"
     internal const val SQUARE_RETROFIT = "com.squareup.retrofit2:retrofit:${Versions.Square.RETROFIT}"
+    internal const val SQUARE_RETROFIT_ADAPTER = "com.squareup.retrofit2:adapter-rxjava2:${Versions.Square.RETROFIT_ADAPTER}"
 
+    //RXJAVA
+    internal const val RX_JAVA = "io.reactivex.rxjava2:rxandroid:${Versions.RxJava.RX_JAVA}"
+
+    //DETEKT
     const val DETEKT = Versions.Detekt.DETEKT
     const val DETEKT_PLUGIN = "io.gitlab.arturbosch.detekt"
     internal const val DETEKT_FORMATTING = "io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.Detekt.DETEKT_FORMATTING}"
+
     // Timber - Logging Library
     internal const val TIMBER = "com.jakewharton.timber:timber:${Versions.Others.TIMBER}"
+
+    //Intuit
+    internal const val INTUIT_SDP = "com.intuit.sdp:sdp-android:${Versions.Others.INTUIT}"
+    internal const val INTUIT_SSP = "com.intuit.ssp:ssp-android:${Versions.Others.INTUIT}"
 
 }
 
@@ -83,11 +95,16 @@ fun DependencyHandler.firebase() {
     implementation(Dependencies.FIREBASE_CRASHLYTICS)
 }
 
+fun DependencyHandler.rxjava() {
+    implementation(Dependencies.RX_JAVA)
+}
+
 fun DependencyHandler.square() {
     implementation(Dependencies.SQUARE_OK_HTTP)
     implementation(Dependencies.SQUARE_OK_HTTP_LOGGING_INTERCEPTOR)
     implementation(Dependencies.SQUARE_RETROFIT)
     implementation(Dependencies.SQUARE_OK_CONVERTER_GSON)
+    implementation(Dependencies.SQUARE_RETROFIT_ADAPTER)
 }
 
 fun DependencyHandler.test() {
@@ -108,6 +125,8 @@ fun DependencyHandler.detektFormatting() {
 
 fun DependencyHandler.others() {
     implementation(Dependencies.TIMBER)
+    implementation(Dependencies.INTUIT_SDP)
+    implementation(Dependencies.INTUIT_SSP)
 }
 
 private fun DependencyHandler.classpath(depName: String) {
