@@ -6,7 +6,8 @@ import com.mbobiosio.countries.App
 import com.mbobiosio.countries.interfaces.NetworkCallback
 import com.mbobiosio.countries.model.Country
 import com.mbobiosio.countries.repo.CountryRepository
-import com.mbobiosio.countries.util.isOnline
+import com.mbobiosio.countries.util.NetworkUtil.isOnline
+import timber.log.Timber
 
 class CountryViewModel : ViewModel() {
 
@@ -16,7 +17,7 @@ class CountryViewModel : ViewModel() {
         }
 
     val progressBar = MutableLiveData(true)
-    private val networkError: MutableLiveData<Boolean> = MutableLiveData()
+    val networkError: MutableLiveData<Boolean> = MutableLiveData()
     val apiError = MutableLiveData<String>()
 
     private var repository = CountryRepository.getRepository()
@@ -28,20 +29,18 @@ class CountryViewModel : ViewModel() {
             dataList = repository.getCountries(object : NetworkCallback {
                 override fun onNetworkSuccess() {
                     progressBar.value = false
+                    Timber.d("Successful")
                 }
 
                 override fun onNetworkFailure(th: Throwable) {
                     apiError.value = th.message
+                    Timber.d("$th")
                 }
             }, reload)
         } else {
             networkError.value = true
         }
         return dataList
-    }
-
-    fun onRefreshData() {
-        fetchData(true)
     }
 
 }

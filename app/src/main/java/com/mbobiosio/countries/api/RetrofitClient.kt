@@ -35,14 +35,14 @@ class RetrofitClient private constructor() {
 
         val okHttpClient = OkHttpClient.Builder().apply {
             this.addInterceptor(interceptor)
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
+                .connectTimeout(0, TimeUnit.SECONDS)
+                .readTimeout(0, TimeUnit.SECONDS)
                 .retryOnConnectionFailure(true)
         }.build()
 
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
-            //.client(okHttpClient)
+            .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

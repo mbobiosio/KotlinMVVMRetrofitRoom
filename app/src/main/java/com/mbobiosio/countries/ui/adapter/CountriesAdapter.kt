@@ -1,9 +1,9 @@
 package com.mbobiosio.countries.ui.adapter
 
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.mbobiosio.countries.R
 import com.mbobiosio.countries.model.Country
 import kotlinx.android.synthetic.main.item_country.view.*

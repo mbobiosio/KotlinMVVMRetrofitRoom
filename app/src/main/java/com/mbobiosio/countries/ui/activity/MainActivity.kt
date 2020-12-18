@@ -1,18 +1,14 @@
 package com.mbobiosio.countries.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import com.mbobiosio.countries.R
-import com.mbobiosio.countries.model.Country
-import com.mbobiosio.countries.model.Currencies
-import com.mbobiosio.countries.model.TimeZones
 import com.mbobiosio.countries.ui.adapter.CountriesAdapter
 import com.mbobiosio.countries.viewmodel.CountryViewModel
+import com.mbobiosio.lifecycleconnectivity.LifecycleService
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,24 +23,43 @@ class MainActivity : AppCompatActivity() {
         countriesAdapter = CountriesAdapter()
         countries.adapter = countriesAdapter
 
-        observeDataList(countryViewModel)
+        val connectionLiveData = LifecycleService(this)
+        connectionLiveData.observe(this, {
+
+            observeDataList(countryViewModel)
+
+            when (it) {
+                true -> errorMessage.visibility = View.GONE
+            }
+        })
 
     }
 
     private fun observeDataList(viewModel: CountryViewModel) {
         viewModel.fetchData(false).observe(this, {
-
+            countriesAdapter.setData(it)
+        })
+        viewModel.apiError.observe(this, {
+            errorMessage.text = it
+        })
+        viewModel.networkError.observe(this, {
+            errorMessage.text = getString(R.string.no_internet)
+        })
+        viewModel.progressBar.observe(this, {
             when {
-                it.isNullOrEmpty() -> {
-                    Timber.d("Empty")
+                it -> {
+                    isLoading(View.VISIBLE)
                 }
                 else -> {
-                    countriesAdapter.setData(it)
-
+                    isLoading(View.GONE)
                 }
             }
-
-
         })
+
     }
+
+    private fun isLoading(view: Int) {
+        loadingIcon.visibility = view
+    }
+
 }

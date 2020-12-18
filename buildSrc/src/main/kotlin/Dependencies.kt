@@ -60,6 +60,12 @@ object Dependencies {
     internal const val INTUIT_SDP = "com.intuit.sdp:sdp-android:${Versions.Others.INTUIT}"
     internal const val INTUIT_SSP = "com.intuit.ssp:ssp-android:${Versions.Others.INTUIT}"
 
+    //Lifecycle Connectivity
+    internal const val LIFECYCLE_CONNECTIVITY = "com.github.mbobiosio:lifecycleconnectivity:${Versions.Others.LIFECYCLE_CONNECTIVITY}"
+
+    //Loading Indicator
+    internal const val LOADING_LIBRARY = "com.wang.avi:library:${Versions.Others.LOADING_INDICATOR}"
+
 }
 
 
@@ -127,6 +133,8 @@ fun DependencyHandler.others() {
     implementation(Dependencies.TIMBER)
     implementation(Dependencies.INTUIT_SDP)
     implementation(Dependencies.INTUIT_SSP)
+    implementation(Dependencies.LIFECYCLE_CONNECTIVITY)
+    implementation(Dependencies.LOADING_LIBRARY)
 }
 
 private fun DependencyHandler.classpath(depName: String) {
