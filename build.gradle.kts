@@ -1,11 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    val kotlin_version by extra("1.4.21")
     repositories {
         google()
         jcenter()
         uri("https://plugins.gradle.org/m2/")
     }
     dependencies {
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         gradle()
     }
 }
@@ -35,7 +37,7 @@ tasks.register("detektAll", io.gitlab.arturbosch.detekt.Detekt::class) {
     autoCorrect = true
     parallel = true
     setSource(files(projectDir))
-    config.setFrom(files("$rootDir/detekt.yml"))
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
     include("**/*.kt")
     include("**/*.kts")
     exclude("**/build/**")

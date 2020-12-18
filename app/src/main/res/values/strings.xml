@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KotlinMVVMRetrofitRoom</string>
+    <string name="no_internet">No Internet Connection!!!</string>
+    <string name="refresh">Refresh</string>
 </resources>

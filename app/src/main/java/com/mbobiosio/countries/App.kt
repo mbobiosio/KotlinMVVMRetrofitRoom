@@ -7,6 +7,17 @@ import timber.log.Timber
 
 class App : Application() {
 
+    init {
+        instance = this
+    }
+
+    companion object {
+        private var instance : App? = null
+        fun appContext() : App {
+            return instance as App
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
 

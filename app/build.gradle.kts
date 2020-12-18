@@ -2,8 +2,11 @@ plugins {
     id ("com.android.application")
     kotlin("android")
     kotlin("kapt")
+    id("kotlin-android-extensions")
     id("name.remal.check-dependency-updates")
+    id("kotlin-android")
 }
+
 
 android {
     compileSdkVersion(Versions.Android.COMPILE_SDK)
@@ -69,11 +72,16 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
     kotlin()
     google()
     firebase()
     square()
+    rxjava()
+    glide()
     others()
     test()
 }

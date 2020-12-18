@@ -21,7 +21,7 @@ object Versions {
     object Gradle {
         const val FIREBASE_CRASHLYTICS = "2.4.1"
         const val GRADLE_ANDROID = "4.1.1"
-        const val KOTLIN = "1.4.21"
+        const val KOTLIN = "1.4.10"
         const val MAVEN_PLUGIN = "2.1"
         const val GOOGLE_SERVICES = "4.3.4"
         const val REMAL_PLUGIN = "1.1.5"
@@ -65,6 +65,16 @@ object Versions {
         const val OK_HTTP = "4.9.0"
         const val RETROFIT = "2.9.0"
         const val RETROFIT_CONVERTER_GSON = "2.6.2"
+        const val RETROFIT_ADAPTER = "2.9.0"
+    }
+
+    object RxJava {
+        const val RX_JAVA = "2.1.1"
+    }
+
+    object Glide {
+        const val GLIDE = "4.10.0"
+        const val GLIDE_SVG = "2.0.4"
     }
 
     object Coroutines {
@@ -76,7 +86,7 @@ object Versions {
         const val COROUTINES = "1.4.2"
         const val JUNIT = "4.13.1"
         const val MOCKITO_KOTLIN = "2.2.0"
-        const val MOCKK = "1.10.2"
+        const val MOCK = "1.10.2"
     }
 
     object Detekt {
@@ -86,5 +96,8 @@ object Versions {
 
     object Others {
         const val TIMBER = "4.7.1"
+        const val INTUIT = "1.0.6"
+        const val LIFECYCLE_CONNECTIVITY = "1.0.1"
+        const val LOADING_INDICATOR = "2.1.3"
     }
 }
