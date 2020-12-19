@@ -12,8 +12,6 @@ jobs:
   gradle:
     strategy:
       matrix:
-        kotlin-version:
-          - 1.4.0
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     if: ${{ !contains(github.event.head_commit.message, 'ci skip') }}
@@ -39,7 +37,10 @@ jobs:
 
   apk:
     name: Generate APK
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+    matrix:
+      kotlin-version:
+        - 1.4.0
 
     steps:
       - uses: actions/checkout@v2
