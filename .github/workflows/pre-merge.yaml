@@ -38,9 +38,6 @@ jobs:
   apk:
     name: Generate APK
     runs-on: ubuntu-latest
-    matrix:
-      kotlin-version:
-        - 1.4.0
 
     steps:
       - uses: actions/checkout@v2
@@ -48,9 +45,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
-
-      - name: Build with Gradle
-          run: ./gradlew build -Dsquare.kotlinVersion=${{ matrix.kotlin-version }}
 
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
