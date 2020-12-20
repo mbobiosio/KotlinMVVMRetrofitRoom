@@ -1,7 +1,7 @@
 apply plugin: 'io.gitlab.arturbosch.detekt'
 
 detekt {
-    config = files("$rootDir/config/detekt/detekt-config.yml")
+    config = files("$rootDir/config/detekt/detekt.yml")
     filters = ".*build.*,.*/resources/.*,.*/tmp/.*"
     parallel = false // Builds the AST in parallel. Rules are always executed in parallel. Can lead to speedups in larger projects. `false` by default.
     ignoreFailures = true // If set to `true` the build does not fail when the maxIssues count was reached. Defaults to `false`.
