@@ -21,7 +21,7 @@ object Versions {
     object Gradle {
         const val FIREBASE_CRASHLYTICS = "2.4.1"
         const val GRADLE_ANDROID = "4.1.1"
-        const val KOTLIN = "1.4.10"
+        const val KOTLIN = "1.4.21"
         const val MAVEN_PLUGIN = "2.1"
         const val GOOGLE_SERVICES = "4.3.4"
         const val REMAL_PLUGIN = "1.1.5"
@@ -36,6 +36,7 @@ object Versions {
             const val APP_COMPAT = "1.2.0"
             const val CONSTRAINT_LAYOUT = "2.0.4"
             const val CORE_KTX = "1.3.2"
+            const val NAV_KTX = "2.3.2"
             const val CORE_TESTING = "2.1.0"
             const val ESPRESSO = "3.3.0"
             const val JUNIT_EXT = "1.1.2"
