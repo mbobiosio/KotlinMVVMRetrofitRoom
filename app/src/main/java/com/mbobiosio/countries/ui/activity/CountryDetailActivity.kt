@@ -22,5 +22,7 @@ class CountryDetailActivity : AppCompatActivity() {
 
         country = (intent.getSerializableExtra("details") as? Country)!!
         binding.country = country
+
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
     }
 }
