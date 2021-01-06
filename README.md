@@ -2,8 +2,8 @@
 This project is designed to express how to use Android MVVM architecture while exploiting the right practices.
 
 ## Screenshots
-<img alt="movies_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/raw/main/screenshots/home.png" width="235" height="500"> <img alt="movie_detail_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/main/screenshots/detail.png" width="235" height="500">
-<img alt="movie_detail_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/main/screenshots/search.png" width="235" height="500">
+<img alt="movies_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/master/screenshots/home.png" width="235" height="500"> <img alt="movie_detail_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/master/screenshots/details.png" width="235" height="500">
+<img alt="movie_detail_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/master/screenshots/search.png" width="235" height="500">
 
 ## Technical Summary
 
