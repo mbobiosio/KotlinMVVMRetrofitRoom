@@ -1,11 +1,10 @@
 package com.mbobiosio.countries.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.mbobiosio.countries.R
 import com.mbobiosio.countries.model.Country
 import kotlinx.android.synthetic.main.activity_country_detail.*
-import timber.log.Timber
 
 class CountryDetailActivity : AppCompatActivity() {
 

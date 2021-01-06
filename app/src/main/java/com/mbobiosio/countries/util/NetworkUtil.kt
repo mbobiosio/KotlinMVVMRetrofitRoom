@@ -4,7 +4,6 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import androidx.annotation.RequiresApi
 import timber.log.Timber
 
 object NetworkUtil {

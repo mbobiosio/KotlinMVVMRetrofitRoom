@@ -7,7 +7,6 @@ plugins {
     id("kotlin-android")
 }
 
-
 android {
     compileSdkVersion(Versions.Android.COMPILE_SDK)
     buildToolsVersion = Versions.Android.BUILD_TOOLS
@@ -67,14 +66,10 @@ android {
     sourceSets["main"].java {
         srcDir("src/sharedTest/java")
     }
-
 }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
     kotlin()
     google()

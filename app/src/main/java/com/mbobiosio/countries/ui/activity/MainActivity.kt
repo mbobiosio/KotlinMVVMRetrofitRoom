@@ -11,7 +11,6 @@ import com.mbobiosio.countries.ui.adapter.CountriesAdapter
 import com.mbobiosio.countries.viewmodel.CountryViewModel
 import com.mbobiosio.lifecycleconnectivity.LifecycleService
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
 
 class MainActivity : AppCompatActivity(), (Country) -> Unit {
 
