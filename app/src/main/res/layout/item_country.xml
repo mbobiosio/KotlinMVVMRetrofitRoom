@@ -25,17 +25,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{country.name}"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="?colorOnBackground"
+            android:textSize="@dimen/_11ssp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/flag"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="TextView" />
 
-        <TextView
-            android:id="@+id/capital"
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/population"
+            population="@{country.population}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/countryName"
+            android:fontFamily="@font/lato"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/currency"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/countryName"
             tools:text="TextView" />
@@ -44,19 +50,23 @@
             android:id="@+id/currency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@{country.currencies.get(0).name}"
             android:layout_marginBottom="16dp"
+            android:text="@{country.capital}"
+            android:fontFamily="@font/lato"
+            android:textSize="@dimen/_10ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/countryName"
             app:layout_constraintTop_toBottomOf="@+id/countryName"
             tools:text="TextView" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/flag"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:scaleType="fitXY"
+            app:shapeAppearance="@style/ShapeAppearance.2Percent"
+            flag="@{country.flag}"
+            android:contentDescription="@string/country_flag"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/countryName"
             app:layout_constraintStart_toStartOf="parent"
