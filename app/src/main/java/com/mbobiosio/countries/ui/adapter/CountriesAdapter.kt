@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mbobiosio.countries.R
+import com.mbobiosio.countries.databinding.ItemCountryBinding
 import com.mbobiosio.countries.model.Country
 import com.mbobiosio.countries.util.GlideApp
-import kotlinx.android.synthetic.main.item_country.view.*
 
 class CountriesAdapter(
     var listener: (Country) -> Unit
@@ -16,10 +16,8 @@ class CountriesAdapter(
     private var dataList: List<Country> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountriesVH {
-        return CountriesVH(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_country, parent, false)
-        )
+        val binding = ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CountriesVH(binding)
     }
 
     override fun getItemCount() = dataList.size
@@ -32,14 +30,10 @@ class CountriesAdapter(
         notifyDataSetChanged()
     }
 
-    inner class CountriesVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CountriesVH(private val binding: ItemCountryBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Country) = with(itemView) {
-
-            countryName.text = item.name
-            capital.text = item.capital
-            currency.text = item.currencies[0].code
-            GlideApp.with(itemView.context).load(item.flag).into(flag)
+            binding.country = item
 
             setOnClickListener {
                 listener.invoke(item)

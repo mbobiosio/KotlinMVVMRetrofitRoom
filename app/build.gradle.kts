@@ -2,9 +2,9 @@ plugins {
     id ("com.android.application")
     kotlin("android")
     kotlin("kapt")
-    id("kotlin-android-extensions")
-    id("name.remal.check-dependency-updates")
+    id("kotlin-kapt")
     id("kotlin-android")
+    id("name.remal.check-dependency-updates")
 }
 
 android {
@@ -35,6 +35,10 @@ android {
                     "proguard-rules.pro"
             )
         }
+    }
+
+    buildFeatures {
+        dataBinding = true
     }
 
     compileOptions {
@@ -70,7 +74,6 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
     kotlin()
     google()
     firebase()
