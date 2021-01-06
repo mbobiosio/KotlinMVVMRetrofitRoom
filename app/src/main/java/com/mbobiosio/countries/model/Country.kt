@@ -1,5 +1,7 @@
 package com.mbobiosio.countries.model
 
+import java.io.Serializable
+
 data class Country(
     val name: String?,
     val capital: String?,
@@ -12,9 +14,4 @@ data class Country(
     val flag: String?,
     val callingCodes: List<String>?,
     val currencies: List<Currencies>?
-)
-data class Currencies(
-    val code: String?,
-    val name: String?,
-    val symbol: String?
-)
+) : Serializable
