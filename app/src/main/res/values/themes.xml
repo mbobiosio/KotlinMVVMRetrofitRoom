@@ -17,4 +17,9 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
     </style>
+
+    <style name="ShapeAppearance.2Percent" parent="">
+        <item name="cornerSize">2%</item>
+    </style>
+
 </resources>

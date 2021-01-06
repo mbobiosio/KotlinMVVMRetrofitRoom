@@ -1,8 +1,9 @@
 # Kotlin-MVVM-Retrofit
 This project is designed to express how to use Android MVVM architecture while exploiting the right practices.
 
-
-![](https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/master/screenshots/mvvm-architecture.png)
+## Screenshots
+<img alt="movies_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/raw/main/screenshots/home.png" width="235" height="500"> <img alt="movie_detail_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/main/screenshots/detail.png" width="235" height="500">
+<img alt="movie_detail_screen" src="https://github.com/mbobiosio/KotlinMVVMRetrofitRoom/blob/main/screenshots/search.png" width="235" height="500">
 
 ## Technical Summary
 
@@ -19,3 +20,28 @@ This project is designed to express how to use Android MVVM architecture while e
 - [Kotlin Gradle DSL](https://docs.gradle.org/current/userguide/kotlin_dsl.html): Gradle's Kotlin DSL provides an alternative syntax to the traditional Groovy DSL with an enhanced editing experience in supported IDEs, with superior content assist, refactoring, documentation, and more.
 - [Remal check dependency update](https://plugins.gradle.org/plugin/name.remal.check-dependency-updates): Plugin that provides task for discovering dependency updates.
 - [GitHub Actions](https://github.com/features/actions): Automate, customize, and execute your software development workflows right in your repository. Discover, create, and share actions to perform any job, including CI/CD, and combine actions in a completely customized workflow.
+
+
+```
+MIT License
+
+Copyright (c) 2020 Mbuodile Obiosio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
