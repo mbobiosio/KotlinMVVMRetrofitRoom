@@ -76,6 +76,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     kotlin()
     google()
+    room()
     firebase()
     square()
     rxjava()
