@@ -34,6 +34,7 @@ class CountryViewModel : ViewModel() {
 
                 override fun onNetworkFailure(th: Throwable) {
                     apiError.value = th.message
+                    progressBar.value = false
                     Timber.d("$th")
                 }
             }, reload)

@@ -8,10 +8,9 @@ import java.io.Serializable
 
 @Entity(tableName = "country_table")
 data class CountryDbModel(
-    @PrimaryKey(autoGenerate = true)
-    val countryId: Long = 0L,
+    @PrimaryKey
     @ColumnInfo(name = "name")
-    val name: String?,
+    val name: String,
     @ColumnInfo(name = "capital")
     val capital: String?,
     @ColumnInfo(name = "region")

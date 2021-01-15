@@ -7,7 +7,7 @@ import com.mbobiosio.countries.util.Converter
 
 @Database(
     entities = [CountryDbModel::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 @TypeConverters(value = [Converter::class])
@@ -28,7 +28,11 @@ abstract class AppDatabase : RoomDatabase() {
                         context.applicationContext,
                         AppDatabase::class.java,
                         "app_database"
-                    ).build()
+                    )   //Destroy the first version of the database as the data contained is no longer required.
+                        //The first version of the database contained a column for Room auto-generated primary key of type Long,
+                        //which has been removed from the second version of the database
+                        .fallbackToDestructiveMigrationFrom(1)
+                        .build()
                 }
                 INSTANCE = instance
                 return instance
