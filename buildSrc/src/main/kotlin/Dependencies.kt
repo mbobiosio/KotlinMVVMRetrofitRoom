@@ -97,8 +97,7 @@ fun DependencyHandler.google() {
     implementation(Dependencies.ANDROID_LIFECYCLE_LIVEDATA_KTX)
     implementation(Dependencies.ANDROID_MATERIAL)
     implementation(Dependencies.ANDROID_RECYCLERVIEW)
-
-    //kapt(Dependencies.ANDROID_ROOM_COMPILER)
+    kapt(Dependencies.ANDROID_ROOM_COMPILER)
 }
 
 fun DependencyHandler.firebase() {
@@ -108,6 +107,11 @@ fun DependencyHandler.firebase() {
 
 fun DependencyHandler.rxjava() {
     implementation(Dependencies.RX_JAVA)
+}
+
+fun DependencyHandler.room() {
+    implementation(Dependencies.ANDROID_ROOM_KTX)
+    implementation(Dependencies.ANDROID_ROOM_RUNTIME)
 }
 
 fun DependencyHandler.square() {
