@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
     private val countryViewModel by viewModels<CountryViewModel>()
     private lateinit var countriesAdapter: CountriesAdapter
     private lateinit var binding: ActivityMainBinding
+    private var hasPreloadedFromDb: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,16 +54,30 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
             binding.errorMessage.text = it
         })
         viewModel.networkError.observe(this, {
-            binding.errorMessage.text = getString(R.string.no_internet)
+            if (!hasPreloadedFromDb) {
+                binding.errorMessage.text = getString(R.string.no_internet)
+            }
         })
         viewModel.progressBar.observe(this, {
-            when {
-                it -> {
-                    isLoading(View.VISIBLE)
+            if (!hasPreloadedFromDb) {
+                when {
+                    it -> {
+                        isLoading(View.VISIBLE)
+                    }
+                    else -> {
+                        isLoading(View.GONE)
+                    }
                 }
-                else -> {
+            }
+        })
+        viewModel.hasPreloadedFromDb.observe(this, {
+            when (it) {
+                true -> {
+                    hasPreloadedFromDb = true
                     isLoading(View.GONE)
+                    binding.errorMessage.visibility = View.GONE
                 }
+                false -> hasPreloadedFromDb = false
             }
         })
     }
