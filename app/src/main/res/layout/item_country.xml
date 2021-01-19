@@ -1,54 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="country"
+            type="com.mbobiosio.countries.model.Country" />
+    </data>
+<com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     app:cardCornerRadius="4dp"
-    app:cardUseCompatPadding="true"
-    app:cardForegroundColor="@android:color/transparent">
+    app:cardForegroundColor="@android:color/transparent"
+    app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/countryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:text="@{country.name}"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="?colorOnBackground"
+            android:textSize="@dimen/_11ssp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/flag"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="TextView" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/capital"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            tools:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/countryName"
+            population="@{country.population}"
+            android:fontFamily="@font/lato"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/currency"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/countryName" />
+            app:layout_constraintTop_toTopOf="@+id/countryName"
+            tools:text="TextView" />
 
-        <TextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/currency"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            tools:text="TextView"
-            app:layout_constraintStart_toStartOf="@+id/countryName"
+            android:text="@{country.capital}"
+            android:fontFamily="@font/lato"
+            android:textSize="@dimen/_10ssp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/countryName" />
+            app:layout_constraintStart_toStartOf="@+id/countryName"
+            app:layout_constraintTop_toBottomOf="@+id/countryName"
+            tools:text="TextView" />
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/flag"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:scaleType="fitXY"
+            flag="@{country.flag}"
+            style="@style/ShapeAppearance.2Percent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/countryName"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,3 +75,4 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
+</layout>

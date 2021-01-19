@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient private constructor() {
 
-
     companion object {
 
         private lateinit var mAPIService: APIService
@@ -28,7 +27,6 @@ class RetrofitClient private constructor() {
     }
 
     init {
-
         val interceptor = HttpLoggingInterceptor().apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
@@ -50,5 +48,4 @@ class RetrofitClient private constructor() {
     }
 
     fun getAPIService() = mAPIService
-
 }

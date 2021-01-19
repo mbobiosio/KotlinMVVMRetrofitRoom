@@ -19,10 +19,14 @@ class CountryViewModel : ViewModel() {
     val progressBar = MutableLiveData(true)
     val networkError: MutableLiveData<Boolean> = MutableLiveData()
     val apiError = MutableLiveData<String>()
+    var hasPreloadedFromDb: MutableLiveData<Boolean> = MutableLiveData()
 
     private var repository = CountryRepository.getRepository()
 
     fun fetchData(reload: Boolean): MutableLiveData<List<Country>> {
+
+        dataList = repository.loadFromDb()
+        hasPreloadedFromDb = repository.hasPreloadedFromDb
 
         if (isOnline(App.appContext())) {
             progressBar.value = true
@@ -34,6 +38,7 @@ class CountryViewModel : ViewModel() {
 
                 override fun onNetworkFailure(th: Throwable) {
                     apiError.value = th.message
+                    progressBar.value = false
                     Timber.d("$th")
                 }
             }, reload)

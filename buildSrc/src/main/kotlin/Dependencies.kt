@@ -18,6 +18,8 @@ object Dependencies {
     internal const val ANDROID_APP_COMPAT = "androidx.appcompat:appcompat:${Versions.Google.Androidx.APP_COMPAT}"
     internal const val ANDROID_CONSTRAINT_LAYOUT = "androidx.constraintlayout:constraintlayout:${Versions.Google.Androidx.CONSTRAINT_LAYOUT}"
     internal const val ANDROID_CORE_KTX = "androidx.core:core-ktx:${Versions.Google.Androidx.CORE_KTX}"
+    internal const val ANDROID_NAVIGATION_FRAGMENT_KTX = "androidx.navigation:navigation-fragment-ktx:${Versions.Google.Androidx.NAV_KTX}"
+
     internal const val ANDROID_CORE_TESTING = "androidx.arch.core:core-testing:${Versions.Google.Androidx.CORE_TESTING}"
     internal const val ANDROID_JUNIT_EXT = "androidx.test.ext:junit:${Versions.Google.Androidx.JUNIT_EXT}"
     internal const val ANDROID_ESPRESSO_CORE = "androidx.test.espresso:espresso-core:${Versions.Google.Androidx.ESPRESSO}"
@@ -90,12 +92,12 @@ fun DependencyHandler.google() {
     implementation(Dependencies.ANDROID_APP_COMPAT)
     implementation(Dependencies.ANDROID_CONSTRAINT_LAYOUT)
     implementation(Dependencies.ANDROID_CORE_KTX)
+    implementation(Dependencies.ANDROID_NAVIGATION_FRAGMENT_KTX)
     implementation(Dependencies.ANDROID_LIFECYCLE_EXTENSIONS)
     implementation(Dependencies.ANDROID_LIFECYCLE_LIVEDATA_KTX)
     implementation(Dependencies.ANDROID_MATERIAL)
     implementation(Dependencies.ANDROID_RECYCLERVIEW)
-
-    //kapt(Dependencies.ANDROID_ROOM_COMPILER)
+    kapt(Dependencies.ANDROID_ROOM_COMPILER)
 }
 
 fun DependencyHandler.firebase() {
@@ -105,6 +107,11 @@ fun DependencyHandler.firebase() {
 
 fun DependencyHandler.rxjava() {
     implementation(Dependencies.RX_JAVA)
+}
+
+fun DependencyHandler.room() {
+    implementation(Dependencies.ANDROID_ROOM_KTX)
+    implementation(Dependencies.ANDROID_ROOM_RUNTIME)
 }
 
 fun DependencyHandler.square() {

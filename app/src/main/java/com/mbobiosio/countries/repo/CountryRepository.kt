@@ -1,16 +1,32 @@
 package com.mbobiosio.countries.repo
 
 import androidx.lifecycle.MutableLiveData
+import com.mbobiosio.countries.App
 import com.mbobiosio.countries.api.RetrofitClient
+import com.mbobiosio.countries.database.AppDatabase
 import com.mbobiosio.countries.interfaces.NetworkCallback
 import com.mbobiosio.countries.model.Country
+import com.mbobiosio.countries.model.dbmodel.CountryDbModel
+import com.mbobiosio.countries.util.convertToDbModel
+import com.mbobiosio.countries.util.convertToNetworkModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class CountryRepository private constructor() {
 
-    private lateinit var networkCallBack : NetworkCallback
+    private val countryDao = AppDatabase.getInstance(App.appContext()).countryDao
+    private lateinit var networkCallBack: NetworkCallback
+
+    @Volatile
+    var hasPreloadedFromDb: MutableLiveData<Boolean> = MutableLiveData()
+
+    @Volatile
     private var countriesList: MutableLiveData<List<Country>> = MutableLiveData<List<Country>>()
         .apply {
             value = emptyList()
@@ -30,13 +46,29 @@ class CountryRepository private constructor() {
         }
     }
 
+    fun loadFromDb(): MutableLiveData<List<Country>> {
+        CoroutineScope(IO).launch {
+            synchronized(this) {
+                if (!getCountriesFromDb().isNullOrEmpty()) {
+                    hasPreloadedFromDb.postValue(true)
+                    countriesList.postValue(getCountriesFromDb())
+                } else {
+                    hasPreloadedFromDb.postValue(false)
+                }
+            }
+        }
+
+        return countriesList
+    }
+
+
     private lateinit var mNetworkRequest: Call<List<Country>>
 
-    fun getCountries(callback: NetworkCallback, refresh: Boolean) : MutableLiveData<List<Country>> {
+    fun getCountries(callback: NetworkCallback, refresh: Boolean): MutableLiveData<List<Country>> {
 
         networkCallBack = callback
 
-        if (countriesList.value!!.isNotEmpty()  && !refresh) {
+        if (countriesList.value!!.isNotEmpty() && !refresh) {
             networkCallBack.onNetworkSuccess()
             return countriesList
         }
@@ -45,7 +77,10 @@ class CountryRepository private constructor() {
 
         mNetworkRequest.enqueue(object : Callback<List<Country>> {
             override fun onResponse(call: Call<List<Country>>, response: Response<List<Country>>) {
-                countriesList.value = response.body()
+                CoroutineScope(IO).launch {
+                    insertCountriesInDb(convertToDbModel(response.body()!!))
+                    countriesList.postValue(getCountriesFromDb())
+                }
                 networkCallBack.onNetworkSuccess()
             }
 
@@ -79,8 +114,13 @@ class CountryRepository private constructor() {
             })
 
 */
-
         return countriesList
     }
 
+    private fun insertCountriesInDb(countries: List<CountryDbModel>) {
+        if (countries.isNotEmpty()) countryDao.insertCountries(countries)
+    }
+
+    private fun getCountriesFromDb(): List<Country> =
+        convertToNetworkModel(countryDao.getCountries())
 }
