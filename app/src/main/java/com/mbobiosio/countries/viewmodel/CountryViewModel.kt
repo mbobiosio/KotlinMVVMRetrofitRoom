@@ -47,5 +47,4 @@ class CountryViewModel : ViewModel() {
         }
         return dataList
     }
-
 }

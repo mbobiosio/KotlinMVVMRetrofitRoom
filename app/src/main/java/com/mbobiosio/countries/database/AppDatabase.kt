@@ -1,7 +1,10 @@
 package com.mbobiosio.countries.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.mbobiosio.countries.model.dbmodel.CountryDbModel
 import com.mbobiosio.countries.util.Converter
 

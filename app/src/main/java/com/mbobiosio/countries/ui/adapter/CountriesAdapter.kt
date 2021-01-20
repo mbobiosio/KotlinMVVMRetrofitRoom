@@ -1,15 +1,12 @@
 package com.mbobiosio.countries.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.mbobiosio.countries.R
 import com.mbobiosio.countries.databinding.ItemCountryBinding
 import com.mbobiosio.countries.model.Country
-import com.mbobiosio.countries.util.GlideApp
 
 class CountriesAdapter(
     var listener: (Country) -> Unit

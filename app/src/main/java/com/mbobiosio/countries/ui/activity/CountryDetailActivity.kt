@@ -1,12 +1,11 @@
 package com.mbobiosio.countries.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.mbobiosio.countries.R
 import com.mbobiosio.countries.databinding.ActivityCountryDetailBinding
 import com.mbobiosio.countries.model.Country
-import timber.log.Timber
 
 class CountryDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCountryDetailBinding

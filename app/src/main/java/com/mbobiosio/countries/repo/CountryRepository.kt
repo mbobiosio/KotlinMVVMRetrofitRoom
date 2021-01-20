@@ -11,9 +11,7 @@ import com.mbobiosio.countries.util.convertToDbModel
 import com.mbobiosio.countries.util.convertToNetworkModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -89,31 +87,6 @@ class CountryRepository private constructor() {
                 networkCallBack.onNetworkFailure(t)
             }
         })
-/*
-
-        mNetworkRequest.observeOn(Schedulers.io())
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : Observer<List<Country>> {
-                override fun onSubscribe(d: Disposable) {
-
-                }
-
-                override fun onNext(t: List<Country>) {
-                    countries.value = t
-                    networkCallBack.onNetworkSuccess()
-                }
-
-                override fun onError(e: Throwable) {
-                    countries.value = emptyList()
-                    networkCallBack.onNetworkFailure(e)
-                }
-
-                override fun onComplete() {
-
-                }
-            })
-
-*/
         return countriesList
     }
 

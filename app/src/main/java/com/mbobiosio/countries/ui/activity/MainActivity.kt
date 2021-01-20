@@ -14,7 +14,6 @@ import com.mbobiosio.countries.databinding.ActivityMainBinding
 import com.mbobiosio.countries.model.Country
 import com.mbobiosio.countries.ui.adapter.CountriesAdapter
 import com.mbobiosio.countries.viewmodel.CountryViewModel
-import com.mbobiosio.lifecycleconnectivity.LifecycleService
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity(), (Country) -> Unit {
@@ -31,17 +30,7 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
         countriesAdapter = CountriesAdapter(this)
         binding.countries.adapter = countriesAdapter
 
-        val connectionLiveData = LifecycleService(this)
-        connectionLiveData.observe(this, {
-
-            observeDataList(countryViewModel)
-
-            when (it) {
-                true -> {
-                    binding.errorMessage.visibility = View.GONE
-                }
-            }
-        })
+        observeDataList(countryViewModel)
     }
 
     private fun observeDataList(viewModel: CountryViewModel) {
@@ -105,7 +94,6 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
             }
         })
     }
-
 
     private fun isLoading(view: Int) {
         binding.loadingIcon.visibility = view

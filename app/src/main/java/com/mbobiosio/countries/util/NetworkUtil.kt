@@ -30,6 +30,5 @@ object NetworkUtil {
         }
         return false
     }
-
 }
 

@@ -148,7 +148,6 @@ fun DependencyHandler.others() {
     implementation(Dependencies.TIMBER)
     implementation(Dependencies.INTUIT_SDP)
     implementation(Dependencies.INTUIT_SSP)
-    implementation(Dependencies.LIFECYCLE_CONNECTIVITY)
     implementation(Dependencies.LOADING_LIBRARY)
 }
 
