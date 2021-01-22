@@ -6,7 +6,7 @@
     <data>
         <variable
             name="country"
-            type="com.mbobiosio.countries.model.Country" />
+            type="com.mbobiosio.countries.model.domain.CountryDomainModel" />
     </data>
 <com.google.android.material.card.MaterialCardView
     android:layout_width="match_parent"

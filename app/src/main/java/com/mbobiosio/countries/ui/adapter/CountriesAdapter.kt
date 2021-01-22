@@ -1,21 +1,18 @@
 package com.mbobiosio.countries.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.mbobiosio.countries.R
 import com.mbobiosio.countries.databinding.ItemCountryBinding
-import com.mbobiosio.countries.model.Country
-import com.mbobiosio.countries.util.GlideApp
+import com.mbobiosio.countries.model.domain.CountryDomainModel
 
 class CountriesAdapter(
-    var listener: (Country) -> Unit
+    var listener: (CountryDomainModel) -> Unit
 ) : RecyclerView.Adapter<CountriesAdapter.CountriesVH>(), Filterable {
 
-    private var dataList: List<Country> = ArrayList()
+    private var dataList: List<CountryDomainModel> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountriesVH {
         val binding = ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,14 +24,14 @@ class CountriesAdapter(
     override fun onBindViewHolder(holder: CountriesVH, position: Int) =
         holder.bind(dataList[position])
 
-    fun setData(data: List<Country>) {
+    fun setData(data: List<CountryDomainModel>) {
         this.dataList = data
         notifyDataSetChanged()
     }
 
     inner class CountriesVH(private val binding: ItemCountryBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Country) = with(itemView) {
+        fun bind(item: CountryDomainModel) = with(itemView) {
             binding.country = item
 
             setOnClickListener {
@@ -51,7 +48,7 @@ class CountriesAdapter(
                 dataList = when {
                     query.isEmpty() -> dataList
                     else -> {
-                        val mutableList: MutableList<Country> = mutableListOf()
+                        val mutableList: MutableList<CountryDomainModel> = mutableListOf()
                         for (data in dataList) {
                             if (data.name!!.contains(query, ignoreCase = true)
                                 || data.capital!!.contains(query, ignoreCase = true)) {
@@ -67,7 +64,7 @@ class CountriesAdapter(
             }
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                dataList = results?.values as List<Country>
+                dataList = results?.values as List<CountryDomainModel>
                 notifyDataSetChanged()
             }
         }

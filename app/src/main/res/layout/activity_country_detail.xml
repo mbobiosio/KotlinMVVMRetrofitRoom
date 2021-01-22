@@ -7,7 +7,7 @@
 
         <variable
             name="country"
-            type="com.mbobiosio.countries.model.Country" />
+            type="com.mbobiosio.countries.model.domain.CountryDomainModel" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

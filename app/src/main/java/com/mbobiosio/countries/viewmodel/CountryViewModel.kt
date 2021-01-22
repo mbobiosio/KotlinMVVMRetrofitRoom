@@ -1,49 +1,43 @@
 package com.mbobiosio.countries.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mbobiosio.countries.App
 import com.mbobiosio.countries.interfaces.NetworkCallback
-import com.mbobiosio.countries.model.Country
+import com.mbobiosio.countries.model.domain.CountryDomainModel
 import com.mbobiosio.countries.repo.CountryRepository
 import com.mbobiosio.countries.util.NetworkUtil.isOnline
 import timber.log.Timber
 
 class CountryViewModel : ViewModel() {
 
-    private var dataList: MutableLiveData<List<Country>> = MutableLiveData<List<Country>>()
-        .apply {
-            value = emptyList()
-        }
+    private var repository = CountryRepository.getRepository()
+
+    private var dataList = repository.countries
 
     val progressBar = MutableLiveData(true)
     val networkError: MutableLiveData<Boolean> = MutableLiveData()
     val apiError = MutableLiveData<String>()
-    var hasPreloadedFromDb: MutableLiveData<Boolean> = MutableLiveData()
 
-    private var repository = CountryRepository.getRepository()
-
-    fun fetchData(reload: Boolean): MutableLiveData<List<Country>> {
-
-        dataList = repository.loadFromDb()
-        hasPreloadedFromDb = repository.hasPreloadedFromDb
-
+    fun fetchData(reload: Boolean): LiveData<List<CountryDomainModel>> {
         if (isOnline(App.appContext())) {
-            progressBar.value = true
-            dataList = repository.getCountries(object : NetworkCallback {
+            repository.refreshDatabase(object : NetworkCallback {
                 override fun onNetworkSuccess() {
                     progressBar.value = false
                     Timber.d("Successful")
                 }
 
                 override fun onNetworkFailure(th: Throwable) {
-                    apiError.value = th.message
+                    if (dataList.value.isNullOrEmpty()) apiError.value = th.message
                     progressBar.value = false
                     Timber.d("$th")
                 }
             }, reload)
         } else {
-            networkError.value = true
+            if (dataList.value.isNullOrEmpty()) networkError.value = true
+            progressBar.value = false
+            Timber.d("Network error")
         }
         return dataList
     }
