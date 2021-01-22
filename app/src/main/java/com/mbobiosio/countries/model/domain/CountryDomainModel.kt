@@ -1,6 +1,9 @@
-package com.mbobiosio.countries.model
+package com.mbobiosio.countries.model.domain
 
-data class Country(
+import com.mbobiosio.countries.model.Currencies
+import java.io.Serializable
+
+class CountryDomainModel(
     val name: String?,
     val capital: String?,
     val region: String?,
@@ -12,4 +15,4 @@ data class Country(
     val flag: String?,
     val callingCodes: List<String>?,
     val currencies: List<Currencies>?
-)
+): Serializable

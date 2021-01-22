@@ -6,12 +6,13 @@ import androidx.databinding.DataBindingUtil
 import com.mbobiosio.countries.R
 import com.mbobiosio.countries.databinding.ActivityCountryDetailBinding
 import com.mbobiosio.countries.model.Country
+import com.mbobiosio.countries.model.domain.CountryDomainModel
 import timber.log.Timber
 
 class CountryDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCountryDetailBinding
 
-    private lateinit var country: Country
+    private lateinit var country: CountryDomainModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +21,7 @@ class CountryDetailActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        country = (intent.getSerializableExtra("details") as? Country)!!
+        country = (intent.getSerializableExtra("details") as? CountryDomainModel)!!
         binding.country = country
 
         binding.toolbar.setNavigationOnClickListener { onBackPressed() }

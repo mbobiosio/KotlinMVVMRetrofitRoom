@@ -11,17 +11,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.mbobiosio.countries.R
 import com.mbobiosio.countries.databinding.ActivityMainBinding
-import com.mbobiosio.countries.model.Country
+import com.mbobiosio.countries.model.domain.CountryDomainModel
 import com.mbobiosio.countries.ui.adapter.CountriesAdapter
 import com.mbobiosio.countries.viewmodel.CountryViewModel
 import com.mbobiosio.lifecycleconnectivity.LifecycleService
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity(), (Country) -> Unit {
+class MainActivity : AppCompatActivity(), (CountryDomainModel) -> Unit {
     private val countryViewModel by viewModels<CountryViewModel>()
     private lateinit var countriesAdapter: CountriesAdapter
     private lateinit var binding: ActivityMainBinding
-    private var hasPreloadedFromDb: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +29,10 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
 
         countriesAdapter = CountriesAdapter(this)
         binding.countries.adapter = countriesAdapter
+        observeDataList(countryViewModel)
 
         val connectionLiveData = LifecycleService(this)
         connectionLiveData.observe(this, {
-
-            observeDataList(countryViewModel)
 
             when (it) {
                 true -> {
@@ -47,37 +45,27 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
     private fun observeDataList(viewModel: CountryViewModel) {
         lifecycleScope.launch {
             viewModel.fetchData(false).observe(this@MainActivity, {
-                countriesAdapter.setData(it)
+                if (!it.isNullOrEmpty()) {
+                    countriesAdapter.setData(it)
+                    binding.errorMessage.visibility = View.GONE
+                    isLoading(View.GONE)
+                }
             })
         }
         viewModel.apiError.observe(this, {
             binding.errorMessage.text = it
         })
         viewModel.networkError.observe(this, {
-            if (!hasPreloadedFromDb) {
-                binding.errorMessage.text = getString(R.string.no_internet)
-            }
+            if (it) binding.errorMessage.text = getString(R.string.no_internet)
         })
         viewModel.progressBar.observe(this, {
-            if (!hasPreloadedFromDb) {
-                when {
-                    it -> {
-                        isLoading(View.VISIBLE)
-                    }
-                    else -> {
-                        isLoading(View.GONE)
-                    }
+            when {
+                it -> {
+                    isLoading(View.VISIBLE)
                 }
-            }
-        })
-        viewModel.hasPreloadedFromDb.observe(this, {
-            when (it) {
-                true -> {
-                    hasPreloadedFromDb = true
+                else -> {
                     isLoading(View.GONE)
-                    binding.errorMessage.visibility = View.GONE
                 }
-                false -> hasPreloadedFromDb = false
             }
         })
     }
@@ -111,7 +99,7 @@ class MainActivity : AppCompatActivity(), (Country) -> Unit {
         binding.loadingIcon.visibility = view
     }
 
-    override fun invoke(country: Country) {
+    override fun invoke(country: CountryDomainModel) {
         val intent = Intent(this, CountryDetailActivity::class.java)
         intent.putExtra("details", country)
         startActivity(intent)
